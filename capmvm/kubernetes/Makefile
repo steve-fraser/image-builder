@@ -4,7 +4,7 @@ GIT_SHA:=$(shell git rev-parse HEAD)
 
 REGISTRY?=ghcr.io/steve-fraser
 IMAGE_NAME?=$(REGISTRY)/capmvm-k8s-os
-CONTAINERD_VERSION?=1.5.9
+CONTAINERD_VERSION?=1.5.11
 TAG?=$(shell git rev-parse --short HEAD)
 
 RELEASE_VERSIONS?=1.24.12 # RELEASE follows the kubernetes release
