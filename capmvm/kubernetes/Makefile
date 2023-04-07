@@ -4,10 +4,10 @@ GIT_SHA:=$(shell git rev-parse HEAD)
 
 REGISTRY?=ghcr.io/steve-fraser
 IMAGE_NAME?=$(REGISTRY)/capmvm-k8s-os
-CONTAINERD_VERSION?=1.5.11
+CONTAINERD_VERSION?=1.6.20
 TAG?=$(shell git rev-parse --short HEAD)
 
-RELEASE_VERSIONS?=1.21.8 1.22.3 1.22.8 1.23.5 1.24.12 1.25.8 1.26.3 # RELEASE follows the kubernetes release
+RELEASE_VERSIONS?=1.26.3 # RELEASE follows the kubernetes release
 
 build: $(addprefix build-,$(RELEASE_VERSIONS))
 build-%:
