@@ -77,3 +77,5 @@ Environment="KUBELET_EXTRA_ARGS=--container-runtime=remote --runtime-request-tim
     >> /etc/systemd/system/kubelet.service.d/0-containerd.conf
 
 RUN systemctl enable kubelet
+
+RUN apt install -y open-iscsi && systemctl enable iscsid
