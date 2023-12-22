@@ -7,7 +7,7 @@ IMAGE_NAME?=$(REGISTRY)/capmvm-k8s-os
 CONTAINERD_VERSION?=1.6.20
 TAG?=$(shell git rev-parse --short HEAD)
 
-RELEASE_VERSIONS?=1.24.2 1.24.13 1.26.3 # RELEASE follows the kubernetes release
+RELEASE_VERSIONS?=1.26.6
 
 build: $(addprefix build-,$(RELEASE_VERSIONS))
 build-%:
