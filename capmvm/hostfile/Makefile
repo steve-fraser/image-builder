@@ -2,8 +2,8 @@ DOCKER := docker
 BUILD_DATE:=$(shell date --rfc-3339=seconds)
 GIT_SHA:=$(shell git rev-parse HEAD)
 
-REGISTRY?=ghcr.io/steve-fraser
-IMAGE_NAME?=$(REGISTRY)/
+REGISTRY?=ghcr.io/steve-fraser/
+IMAGE_NAME?=$(REGISTRY)/firecracker-hostfile:
 TAG?=$(shell git rev-parse --short HEAD)
 
 RELEASE_VERSIONS?=latest
