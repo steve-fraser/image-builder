@@ -1,15 +1,31 @@
-name: CAPMVMV (Manual) - Build and release
+name: CAPMVM - Host File
 
 on:
-  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'capmvm/hostfile/**'
+    branches: [main]
+  push:
+    paths:
+      - 'capmvm/hostfile/**'
     branches: [main]
 
 defaults:
   run:
-    working-directory: capmvm/kubernetes
+    working-directory: capmvm/hostfile
 
 jobs:
+  build:
+    if: github.event_name != 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build image
+        run: make
   release:
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     permissions:
       contents: read
