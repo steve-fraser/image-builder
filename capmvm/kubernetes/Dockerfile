@@ -63,6 +63,8 @@ RUN sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://
 RUN echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 RUN sudo apt-get update -y
 
+ADD hosts /etc/hosts
+
 RUN apt-get update && apt-get install -y \
         kubeadm=${KUBERNETES_VERSION}-00 \
         kubelet=${KUBERNETES_VERSION}-00 \
