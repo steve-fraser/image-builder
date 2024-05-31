@@ -57,15 +57,19 @@ RUN sysctl --system
 RUN wget https://github.com/containerd/containerd/releases/download/v${CONTAINERD_VERSION}/cri-containerd-cni-${CONTAINERD_VERSION}-linux-${ARCH}.tar.gz
 RUN tar --no-overwrite-dir -C / -xzf cri-containerd-cni-${CONTAINERD_VERSION}-linux-${ARCH}.tar.gz && rm -f cri-containerd-cni-${CONTAINERD_VERSION}-linux-${ARCH}.tar.gz
 
-### Add apt repos
-# Kubeadm, Kubelet, and Kubectl
-RUN K8S_MAJOR=$(echo "$KUBERNETES_VERSION" | cut -d '.' -f 1,2) && curl -fsSL https://pkgs.k8s.io/core:/stable:/v$K8S_MAJOR/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
-RUN K8S_MAJOR=$(echo "$KUBERNETES_VERSION" | cut -d '.' -f 1,2) && echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v$K8S_MAJOR/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list
-RUN sudo apt-get update -y
+# Detect k8s major version
+RUN K8S_MAJOR=$(echo "$KUBERNETES_VERSION" | cut -d '.' -f 1,2) && \
+    echo k8s major detected: $K8S_MAJOR
+
+
+# Download the k8s public signing key and add Kubernetes apt repository
+RUN mkdir -p -m 755 /etc/apt/keyrings && \
+    curl -fsSL https://pkgs.k8s.io/core:/stable:/v$K8S_MAJOR/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
+    echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v$K8S_MAJOR/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list
 
 # ADD hosts /etc/hosts
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update -y && apt-get install -y \
         kubeadm=${KUBERNETES_VERSION}-1.1 \
         kubelet=${KUBERNETES_VERSION}-1.1 \
         kubectl=${KUBERNETES_VERSION}-1.1 && \
