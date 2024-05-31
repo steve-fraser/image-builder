@@ -59,16 +59,16 @@ RUN tar --no-overwrite-dir -C / -xzf cri-containerd-cni-${CONTAINERD_VERSION}-li
 
 ### Add apt repos
 # Kubeadm, Kubelet, and Kubectl
-RUN sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://dl.k8s.io/apt/doc/apt-key.gpg
-RUN echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+RUN curl -fsSL https://pkgs.k8s.io/core:/stable:/v$(echo "$KUBERNETES_VERSION" | cut -d '.' -f 1,2)/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+RUN echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v$(echo "$KUBERNETES_VERSION" | cut -d '.' -f 1,2)/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 RUN sudo apt-get update -y
 
 # ADD hosts /etc/hosts
 
 RUN apt-get update && apt-get install -y \
-        kubeadm=${KUBERNETES_VERSION}-00 \
-        kubelet=${KUBERNETES_VERSION}-00 \
-        kubectl=${KUBERNETES_VERSION}-00 && \
+        kubeadm=${KUBERNETES_VERSION}-1.1 \
+        kubelet=${KUBERNETES_VERSION}-1.1 \
+        kubectl=${KUBERNETES_VERSION}-1.1 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     apt-mark hold kubelet kubeadm kubectl
