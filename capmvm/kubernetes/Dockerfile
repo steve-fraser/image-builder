@@ -64,8 +64,8 @@ RUN K8S_MAJOR=$(echo "$KUBERNETES_VERSION" | cut -d '.' -f 1,2) && \
 
 # Download the k8s public signing key and add Kubernetes apt repository
 RUN mkdir -p -m 755 /etc/apt/keyrings && \
-    curl -fsSL https://pkgs.k8s.io/core:/stable:/v$K8S_MAJOR/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
-    echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v$K8S_MAJOR/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list
+    curl -fsSL https://pkgs.k8s.io/core:/stable:/v${KUBERNETES_VERSION}/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
+    echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v${KUBERNETES_VERSION}/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list
 
 # ADD hosts /etc/hosts
 
