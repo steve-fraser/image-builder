@@ -59,7 +59,7 @@ RUN tar --no-overwrite-dir -C / -xzf cri-containerd-cni-${CONTAINERD_VERSION}-li
 
 
 # Download the k8s public signing key and add Kubernetes apt repository
-RUN K8S_MAJOR=$(echo "${KUBERNETES_VERSION}" | cut -d '.' -f 1,2) && mkdir -p -m 755 /etc/apt/keyrings && \
+RUN  K8S_MAJOR=$(echo "${KUBERNETES_VERSION}" | cut -d '.' -f 1,2) && mkdir -p -m 755 /etc/apt/keyrings && \
     curl -fsSL https://pkgs.k8s.io/core:/stable:/v$K8S_MAJOR/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
     echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v$K8S_MAJOR/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list
 
@@ -77,6 +77,7 @@ RUN mkdir -p /etc/containerd && containerd config default > /etc/containerd/conf
 RUN rm /etc/cni/net.d/10-containerd-net.conflist
 RUN systemctl enable containerd
 
+RUN mkdir -p /etc/systemd/system/kubelet.service.d
 RUN echo '[Service] \n\
 Environment="KUBELET_EXTRA_ARGS=--container-runtime=remote --runtime-request-timeout=15m --container-runtime-endpoint=unix:///run/containerd/containerd.sock"' \
     >> /etc/systemd/system/kubelet.service.d/0-containerd.conf
