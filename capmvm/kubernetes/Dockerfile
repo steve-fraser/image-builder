@@ -59,8 +59,8 @@ RUN tar --no-overwrite-dir -C / -xzf cri-containerd-cni-${CONTAINERD_VERSION}-li
 
 ### Add apt repos
 # Kubeadm, Kubelet, and Kubectl
-RUN curl -fsSL https://pkgs.k8s.io/core:/stable:/v$(echo "$KUBERNETES_VERSION" | cut -d '.' -f 1,2)/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
-RUN echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v$(echo "$KUBERNETES_VERSION" | cut -d '.' -f 1,2)/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+RUN K8S_MAJOR=$(echo "$KUBERNETES_VERSION" | cut -d '.' -f 1,2) && curl -fsSL https://pkgs.k8s.io/core:/stable:/v${K8S_MAJOR}/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+RUN K8S_MAJOR=$(echo "$KUBERNETES_VERSION" | cut -d '.' -f 1,2) && echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v${K8S_MAJOR}/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 RUN sudo apt-get update -y
 
 # ADD hosts /etc/hosts
