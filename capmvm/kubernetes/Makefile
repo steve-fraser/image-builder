@@ -4,10 +4,10 @@ GIT_SHA:=$(shell git rev-parse HEAD)
 
 REGISTRY?=ghcr.io/steve-fraser
 IMAGE_NAME?=$(REGISTRY)/capmvm-k8s-os
-CONTAINERD_VERSION?=1.6.20
+CONTAINERD_VERSION?=1.6.27
 TAG?=$(shell git rev-parse --short HEAD)
 
-RELEASE_VERSIONS?=1.27.14
+RELEASE_VERSIONS?=1.27.14 1.28.10 1.29.5
 
 build: $(addprefix build-,$(RELEASE_VERSIONS))
 build-%:
