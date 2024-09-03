@@ -7,7 +7,7 @@ IMAGE_NAME?=$(REGISTRY)/capmvm-k8s-os
 CONTAINERD_VERSION?=1.6.27
 TAG?=$(shell git rev-parse --short HEAD)
 
-RELEASE_VERSIONS?=1.27.14 1.28.10 1.29.5
+RELEASE_VERSIONS?=1.27.14 1.28.10 1.29.5 1.30.4
 
 build: $(addprefix build-,$(RELEASE_VERSIONS))
 build-%:
