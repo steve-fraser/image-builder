@@ -83,5 +83,4 @@ Environment="KUBELET_EXTRA_ARGS=--runtime-request-timeout=15m --container-runtim
     >> /etc/systemd/system/kubelet.service.d/0-containerd.conf
 
 RUN systemctl enable kubelet
-COPY --from=ghcr.io/steve-fraser/cloudhypervisor-kernel-modules:5.12 / /lib/modules
 
