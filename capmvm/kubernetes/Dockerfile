@@ -87,5 +87,5 @@ RUN systemctl enable kubelet
 
 
 RUN mkdir -p /lib/modules
-COPY --from=ghcr.io/steve-fraser/cloudhypervisor-kernel-modules:5.12.0 /5.12.0 /lib/modules/
+COPY --from=ghcr.io/steve-fraser/cloudhypervisor-kernel-modules:5.12 /5.12.0 /lib/modules/
 
