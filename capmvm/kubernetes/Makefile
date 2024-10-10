@@ -3,7 +3,7 @@ BUILD_DATE:=$(shell date --rfc-3339=seconds)
 GIT_SHA:=$(shell git rev-parse HEAD)
 
 REGISTRY?=ghcr.io/steve-fraser
-IMAGE_NAME?=$(REGISTRY)/capmvm-k8s-os
+IMAGE_NAME?=$(REGISTRY)/capmvm-k8s-os-ch
 CONTAINERD_VERSION?=1.6.27
 TAG?=$(shell git rev-parse --short HEAD)
 

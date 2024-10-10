@@ -6,6 +6,7 @@ ARG CONTAINERD_VERSION=1.5.9
 # Kubernetes version will be used to keep the kubeadm, kubelet, and kubectl version consistent
 ARG KUBERNETES_VERSION=1.21.8
 
+
 RUN apt-get update && apt-get install -y \
         kmod \
         dbus \
@@ -83,4 +84,8 @@ Environment="KUBELET_EXTRA_ARGS=--runtime-request-timeout=15m --container-runtim
     >> /etc/systemd/system/kubelet.service.d/0-containerd.conf
 
 RUN systemctl enable kubelet
+
+
+RUN mkdir -p /lib/modules
+COPY --from=ghcr.io/steve-fraser/cloudhypervisor-kernel-modules:5.12.0 /5.12.0 /lib/modules/
 
