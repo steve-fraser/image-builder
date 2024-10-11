@@ -88,4 +88,5 @@ RUN systemctl enable kubelet
 
 RUN mkdir -p /lib/modules
 COPY --from=ghcr.io/steve-fraser/cloudhypervisor-kernel-modules:5.12 /5.12.0 /lib/modules/5.12.0
-
+RUN mkdir -p /mnt/user
+RUN echo "user  /mnt/user virtiofs rw,_netdev 0 0" >> /etc/fstab
