@@ -4,7 +4,7 @@ GIT_SHA:=$(shell git rev-parse HEAD)
 
 REGISTRY?=ghcr.io/steve-fraser
 IMAGE_NAME?=$(REGISTRY)/capmvm-k8s-os-ch
-CONTAINERD_VERSION?=1.6.27
+CONTAINERD_VERSION?=1.6.34
 TAG?=$(shell git rev-parse --short HEAD)
 
 RELEASE_VERSIONS?=1.31.6
