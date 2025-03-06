@@ -39,7 +39,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: [ 5.15.0 ]
+        version: [ 5.15 ]
     env:
       CH_KERNEL_VERSIONS: ${{ matrix.version }}
     steps:
