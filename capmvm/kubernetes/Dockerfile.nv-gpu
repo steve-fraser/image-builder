@@ -1,4 +1,4 @@
 ARG IMAGE=20.04
-FROM {IMAGE}
+FROM ${IMAGE}
 RUN add-apt-repository ppa:graphics-drivers/ppa
-RUN apt install -y nvidia-driver-460
+RUN apt update && apt install -y nvidia-driver-460
