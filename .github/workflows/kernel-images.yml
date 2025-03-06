@@ -15,21 +15,6 @@ defaults:
     working-directory: kernel
 
 jobs:
-  build-firecracker:
-    if: github.event_name != 'push'
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-    strategy:
-      fail-fast: false
-      matrix:
-        version: [ 4.19.215, 5.10.77 ]
-    env:
-      FC_KERNEL_VERSIONS: ${{ matrix.version }}
-    steps:
-      - uses: actions/checkout@v2
-      - name: Build kernel
-        run: make build-fc
   build-cloudhypervisor:
     if: github.event_name != 'push'
     runs-on: ubuntu-latest
@@ -45,30 +30,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: Build kernel
         run: make build-ch
-  release-firecracker:
-    if: github.event_name != 'pull_request'
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-    strategy:
-      fail-fast: false
-      matrix:
-        version: [ 4.19.215, 5.10.77 ]
-    env:
-      FC_KERNEL_VERSIONS: ${{ matrix.version }}
-    steps:
-      - uses: actions/checkout@v2
-      - name: Login to container registry
-        uses: docker/login-action@v1.10.0
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Build and push
-        run: |
-          make build-fc
-          make push-fc
   release-cloudhypervisor:
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
