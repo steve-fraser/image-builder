@@ -1,4 +1,4 @@
 ARG IMAGE=20.04
 FROM ${IMAGE}
 RUN add-apt-repository ppa:graphics-drivers/ppa
-RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -y nvidia-driver-460
+RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -y nvidia-headless-460
