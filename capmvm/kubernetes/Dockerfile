@@ -1,4 +1,4 @@
-ARG OS_VERSION=20.04
+ARG OS_VERSION=21.10
 FROM ubuntu:${OS_VERSION}
 
 ARG ARCH="amd64"
@@ -57,7 +57,6 @@ RUN sysctl --system
 # Install Containerd
 RUN wget https://github.com/containerd/containerd/releases/download/v${CONTAINERD_VERSION}/cri-containerd-cni-${CONTAINERD_VERSION}-linux-${ARCH}.tar.gz
 RUN tar --no-overwrite-dir -C / -xzf cri-containerd-cni-${CONTAINERD_VERSION}-linux-${ARCH}.tar.gz && rm -f cri-containerd-cni-${CONTAINERD_VERSION}-linux-${ARCH}.tar.gz
-
 
 # Download the k8s public signing key and add Kubernetes apt repository
 RUN  K8S_MAJOR=$(echo "${KUBERNETES_VERSION}" | cut -d '.' -f 1,2) && mkdir -p -m 755 /etc/apt/keyrings && \
