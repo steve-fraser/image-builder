@@ -15,7 +15,7 @@ CH_BIN_IMAGE_NAME?=$(REGISTRY)/cloudhypervisor-kernel-bin
 CH_MOD_IMAGE_NAME?=$(REGISTRY)/cloudhypervisor-kernel-modules
 
 FC_KERNEL_VERSIONS ?= 4.19.215 5.10.77 # If you update this list, please remember to update the matrix in the kernel-images.yml github action!
-CH_KERNEL_VERSIONS ?= 5.12.0
+CH_KERNEL_VERSIONS ?= 5.15.0
 # CH_KERNEL_VERSIONS ?= 5.12 6.2.0 # If you update this list, please remember to update the matrix in the kernel-images.yml github action!
 
 ##@ Build
