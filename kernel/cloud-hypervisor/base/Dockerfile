@@ -9,7 +9,7 @@ ENV SRC_DIR=/usr/src            \
 ARG KERNEL_VERSION
 
 RUN mkdir -p ${SRC_DIR} ${DIST_DIR} && \
-    git clone --depth 1 --branch v5.10 ${LINUX_REPO_URL} ${LINUX_DIR} && \
+    git clone --depth 1 --branch v${KERNEL_VERSION} ${LINUX_REPO_URL} ${LINUX_DIR} && \
     cd ${LINUX_DIR}
 
 WORKDIR ${LINUX_DIR}
