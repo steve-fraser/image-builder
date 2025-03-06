@@ -64,8 +64,6 @@ RUN  K8S_MAJOR=$(echo "${KUBERNETES_VERSION}" | cut -d '.' -f 1,2) && mkdir -p -
     curl -fsSL https://pkgs.k8s.io/core:/stable:/v$K8S_MAJOR/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg && \
     echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v$K8S_MAJOR/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list
 
-# ADD hosts /etc/hosts
-
 RUN apt-get update -y && apt-get install -y \
         kubeadm=${KUBERNETES_VERSION}-1.1 \
         kubelet=${KUBERNETES_VERSION}-1.1 \
