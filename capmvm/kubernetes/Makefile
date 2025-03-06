@@ -46,3 +46,4 @@ build-%:
 push: $(addprefix push-,$(RELEASE_VERSIONS))
 push-%:
 	$(DOCKER) push $(IMAGE_NAME):$*
+	$(DOCKER) push $(IMAGE_NAME)-nv-gpu:$*
