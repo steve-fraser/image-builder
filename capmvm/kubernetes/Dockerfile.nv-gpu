@@ -9,6 +9,3 @@ RUN apt install -y linux-headers-5.15.0-97-generic
 
 RUN add-apt-repository ppa:graphics-drivers/ppa
 RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -y nvidia-headless-460 nvidia-utils-460
-
-
-apt install -y --reinstall nvidia-headless-460 
