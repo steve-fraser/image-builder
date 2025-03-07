@@ -93,6 +93,17 @@ RUN mkdir -p /mnt/user
 RUN echo "user  /mnt/user virtiofs rw,_netdev 0 0" >> /etc/fstab
 
 
+ENV SRC_DIR=/usr/src            \
+    DIST_DIR=/dist              \
+    LINUX_DIR=/usr/src/linux    \
+    LINUX_REPO_URL=https://github.com/torvalds/linux.git
+
+
+
+RUN mkdir -p ${SRC_DIR} ${DIST_DIR} && \
+    git clone --depth 1 --branch v5.15 ${LINUX_REPO_URL} ${LINUX_DIR} && \
+    cd ${LINUX_DIR} \
+    && make headers_install
 
 
 
