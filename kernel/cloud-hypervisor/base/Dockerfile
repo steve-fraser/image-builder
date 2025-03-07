@@ -30,4 +30,4 @@ RUN cp arch/x86/boot/compressed/vmlinux.bin /boot/vmlinux.bin && \
 FROM scratch
 COPY --from=builder /boot /boot
 COPY --from=builder /lib/modules /lib/modules
-COPY --from=builder /usr/src/linux-headers-${KERNEL_VERSION}.0 /usr/src/linux-headers-${KERNEL_VERSION}.0
+COPY --from=builder /usr/src/linux-headers-5.15.0 /usr/src/linux-headers-5.15.0
