@@ -1,6 +1,8 @@
 ARG IMAGE_NAME
 FROM ${IMAGE_NAME}:dev AS builder
 
+RUN apt update && apt install -y rsync
+
 ENV SRC_DIR=/usr/src            \
     DIST_DIR=/dist              \
     LINUX_DIR=/usr/src/linux    \
@@ -19,7 +21,7 @@ COPY cloud-hypervisor/configs/linux-x86_64-${KERNEL_VERSION}.config .config
 RUN make LOCALVERSION= olddefconfig
 RUN make LOCALVERSION= -j `nproc` all
 RUN make LOCALVERSION= modules_install
-RUN make LOCALVERSION= headers_install INSTALL_HDR_PATH=/usr/src/
+RUN make LOCALVERSION= headers_install INSTALL_HDR_PATH=/usr/src/linux-headers-${KERNEL_VERSION}.0
 RUN ls /usr/src/
 
 RUN cp arch/x86/boot/compressed/vmlinux.bin /boot/vmlinux.bin && \
