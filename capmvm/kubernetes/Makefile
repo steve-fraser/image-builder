@@ -14,8 +14,6 @@ build-%:
 	$(DOCKER) build -t $(IMAGE_NAME)-nv-gpu:$*  \
 		--file Dockerfile.nv-gpu \
 		--build-arg IMAGE=$(IMAGE_NAME):$*  \
-		--build-arg KUBERNETES_VERSION=$* \
-		--build-arg CONTAINERD_VERSION=$(CONTAINERD_VERSION) \
 		--label "org.opencontainers.image.created"="$(BUILD_DATE)" \
 		--label "org.opencontainers.image.authors"="Liquid Metal Authors" \
 		--label "org.opencontainers.image.url"="https://github.com/weaveworks-liquidmetal/image-builder" \
