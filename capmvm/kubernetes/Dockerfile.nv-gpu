@@ -4,7 +4,7 @@ ARG OS_VERSION=20.04
 # ARG OS_VERSION=22.04
 COPY --from=ghcr.io/steve-fraser/cloudhypervisor-kernel-modules:5.15 /5.15.0 /lib/modules/5.15.0
 
-RUN apt-get update && apt-get install -y git
+RUN apt-get update && apt-get install -y git build-essential
 
 ENV SRC_DIR=/usr/src            \
     DIST_DIR=/dist              \
