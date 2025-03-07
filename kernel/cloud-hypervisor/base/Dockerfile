@@ -16,9 +16,9 @@ WORKDIR ${LINUX_DIR}
 
 COPY cloud-hypervisor/configs/linux-x86_64-${KERNEL_VERSION}.config .config
 
-RUN make LOCALVERSION= olddefconfig
-RUN make LOCALVERSION= -j `nproc` all
-RUN make LOCALVERSION= modules_install
+RUN make INSTALL_HDR_PATH=/lib/modules/5.15.0-100-generic LOCALVERSION= olddefconfig
+RUN make INSTALL_HDR_PATH=/lib/modules/5.15.0-100-generic LOCALVERSION= -j `nproc` all
+RUN make INSTALL_HDR_PATH=/lib/modules/5.15.0-100-generic LOCALVERSION= modules_install
 
 RUN cp arch/x86/boot/compressed/vmlinux.bin /boot/vmlinux.bin && \
     cp .config /boot/config-${KERNEL_VERSION}
