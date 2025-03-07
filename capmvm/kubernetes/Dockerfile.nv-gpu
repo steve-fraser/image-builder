@@ -1,4 +1,5 @@
 ARG IMAGE=21.10
 FROM ${IMAGE}
+RUN apt-get update && apt install linux-generic
 RUN add-apt-repository ppa:graphics-drivers/ppa
 RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -y nvidia-headless-460 nvidia-utils-460
