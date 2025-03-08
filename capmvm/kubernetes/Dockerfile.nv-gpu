@@ -6,7 +6,7 @@ COPY --from=ghcr.io/steve-fraser/cloudhypervisor-kernel-modules:5.15 /5.15.0 /li
 COPY --from=ghcr.io/steve-fraser/cloudhypervisor-kernel:5.15 /usr/src/linux-headers-5.15.0 /usr/src/linux-headers-5.15.0
 COPY --from=ghcr.io/steve-fraser/cloudhypervisor-kernel:5.15 /usr/src/linux /usr/src/linux
 
-RUN apt-get update && apt-get install -y build-essential
+# RUN apt-get update && apt-get install -y build-essential
 
 # RUN wget https://us.download.nvidia.com/XFree86/Linux-x86_64/525.116.04/NVIDIA-Linux-x86_64-525.116.04.run
 # RUN sh NVIDIA-Linux-x86_64-525.116.04.run --silent
