@@ -11,5 +11,6 @@ RUN sh NVIDIA-Linux-x86_64-525.116.04.run --silent
 RUN rm NVIDIA-Linux-x86_64-525.116.04.run
 # RUN apt update && apt install -y linux-headers-5.15.0-97-generic
 
+
 # RUN add-apt-repository ppa:graphics-drivers/ppa
 # RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -y nvidia-headless-460 nvidia-utils-460
