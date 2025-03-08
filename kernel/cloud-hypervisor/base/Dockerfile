@@ -22,7 +22,6 @@ RUN make LOCALVERSION= olddefconfig
 RUN make LOCALVERSION= -j `nproc` all
 RUN make LOCALVERSION= modules_install
 RUN make LOCALVERSION= headers_install INSTALL_HDR_PATH=/usr/src/linux-headers-${KERNEL_VERSION}.0
-RUN make LOCALVERSION= install
 
 RUN cp arch/x86/boot/compressed/vmlinux.bin /boot/vmlinux.bin && \
     cp .config /boot/config-${KERNEL_VERSION}
@@ -31,3 +30,4 @@ FROM scratch
 COPY --from=builder /boot /boot
 COPY --from=builder /lib/modules /lib/modules
 COPY --from=builder /usr/src/linux-headers-5.15.0 /usr/src/linux-headers-5.15.0
+COPY --from=builder /usr/src/linux /usr/src/linux
