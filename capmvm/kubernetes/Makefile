@@ -11,7 +11,7 @@ RELEASE_VERSIONS?=1.31.6
 
 build: $(addprefix build-,$(RELEASE_VERSIONS))
 build-%:
-$(DOCKER) build -t $(IMAGE_NAME):$*  \
+	$(DOCKER) build -t $(IMAGE_NAME):$*  \
 	--build-arg KUBERNETES_VERSION=$* \
 	--build-arg CONTAINERD_VERSION=$(CONTAINERD_VERSION) \
 	--label "org.opencontainers.image.created"="$(BUILD_DATE)" \
