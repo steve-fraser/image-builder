@@ -22,9 +22,3 @@ RUN apt-get update -y && \
         pciutils            \
         wget             && \
     update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 10
-
-# RUN wget https://us.download.nvidia.com/XFree86/Linux-x86_64/525.116.04/NVIDIA-Linux-x86_64-525.116.04.run
-# RUN sh NVIDIA-Linux-x86_64-525.116.04.run --silent
-# RUN rm NVIDIA-Linux-x86_64-525.116.04.run
-
-
