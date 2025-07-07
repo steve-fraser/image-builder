@@ -1,10 +1,6 @@
 ARG IMAGE=21.10
 FROM ${IMAGE}
 ARG OS_VERSION=20.04
-# ARG OS_VERSION=22.04
-COPY --from=ghcr.io/steve-fraser/cloudhypervisor-kernel-modules:5.15 /5.15.0 /lib/modules/5.15.0
-COPY --from=ghcr.io/steve-fraser/cloudhypervisor-kernel:5.15 /usr/src/linux-headers-5.15.0 /usr/src/linux-headers-5.15.0
-COPY --from=ghcr.io/steve-fraser/cloudhypervisor-kernel:5.15 /usr/src/linux /usr/src/linux
 
 RUN apt-get update -y && \
     apt-get install -y --no-install-recommends \
