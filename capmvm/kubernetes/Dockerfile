@@ -34,6 +34,8 @@ RUN apt-get update && apt-get install -y \
     rm -rf /var/lib/apt/lists/* && \
     sed -i -e 's/^AcceptEnv LANG LC_\*$/#AcceptEnv LANG LC_*/' /etc/ssh/sshd_config
 
+RUN apt-get update && apt install -y open-iscsi && systemctl enable iscsid
+
 #### Let iptables see bridged traffic ###
 RUN echo "overlay \n\
 br_netfilter" >> /etc/modules-load.d/containerd.conf
