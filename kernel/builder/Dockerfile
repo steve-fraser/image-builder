@@ -5,7 +5,7 @@ RUN apt-get update -y && \
         bc                  \
         bison               \
         build-essential     \
-        gcc-7               \
+        gcc-11               \
         flex                \
         git                 \
         libelf-dev          \
@@ -14,4 +14,4 @@ RUN apt-get update -y && \
         ca-certificates     \
         kmod                \
         wget             && \
-    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 10
+    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11  10
