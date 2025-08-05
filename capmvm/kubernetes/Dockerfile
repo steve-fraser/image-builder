@@ -92,3 +92,6 @@ COPY --from=ghcr.io/steve-fraser/cloudhypervisor-kernel:5.15 /usr/src/linux /usr
 
 RUN mkdir -p /mnt/user
 RUN echo "user  /mnt/user virtiofs rw,_netdev 0 0" >> /etc/fstab
+
+
+RUN echo "* soft nofile 65536" >> /etc/security/limits.conf && echo "* hard nofile 65536" >> /etc/security/limits.conf
