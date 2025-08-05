@@ -74,7 +74,7 @@ RUN apt-get update -y && apt-get install -y \
 
 RUN mkdir -p /etc/containerd && containerd config default > /etc/containerd/config.toml
 RUN sed -i 's/SystemdCgroup = false/SystemdCgroup = true/g' /etc/containerd/config.toml
-RUN sed -i 's/systemd_cgroup = false/systemd_cgroup = true/g' /etc/containerd/config.toml
+# RUN sed -i 's/systemd_cgroup = false/systemd_cgroup = true/g' /etc/containerd/config.toml
 RUN rm /etc/cni/net.d/10-containerd-net.conflist
 RUN systemctl enable containerd
 
