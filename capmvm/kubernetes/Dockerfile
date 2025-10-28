@@ -74,10 +74,6 @@ RUN apt-get update -y && apt-get install -y \
 
 RUN mkdir -p /etc/containerd && containerd config default > /etc/containerd/config.toml
 RUN sed -i 's/SystemdCgroup = false/SystemdCgroup = true/g' /etc/containerd/config.toml
-RUN cat >> /etc/containerd/config.toml <<'EOF'
-[plugins."io.containerd.grpc.v1.cri".registry.mirrors."quay.io"]
-  endpoint = ["http://192.168.1.114:5002"]
-EOF
 
 RUN rm /etc/cni/net.d/10-containerd-net.conflist
 RUN systemctl enable containerd
